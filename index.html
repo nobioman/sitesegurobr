@@ -369,48 +369,7 @@
     Página independente, sem vínculo com instituições financeiras.
   </footer>
 
-  <script>
-    const campoCpf = document.getElementById("cpf");
-    const formCpf = document.getElementById("form-cpf");
-    const resultadoCpf = document.getElementById("resultado-cpf");
-
-    campoCpf.addEventListener("input", () => {
-      let numeros = campoCpf.value
-        .replace(/\D/g, "")
-        .slice(0, 11);
-
-      if (numeros.length > 9) {
-        numeros = numeros.replace(
-          /^(\d{3})(\d{3})(\d{3})(\d{0,2})$/,
-          "$1.$2.$3-$4"
-        );
-      } else if (numeros.length > 6) {
-        numeros = numeros.replace(
-          /^(\d{3})(\d{3})(\d{0,3})$/,
-          "$1.$2.$3"
-        );
-      } else if (numeros.length > 3) {
-        numeros = numeros.replace(
-          /^(\d{3})(\d{0,3})$/,
-          "$1.$2"
-        );
-      }
-
-      campoCpf.value = numeros;
-    });
-
-    formCpf.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      resultadoCpf.textContent =
-        "Demonstração concluída. Nenhum dado foi enviado ou consultado.";
-    });
-  </script>
-
-<a href="https://nobioman.github.io/etapaa02/" class="botao-consultar">
-  Consultar
-</a>
-
+  
 
 </body>
 </html>
