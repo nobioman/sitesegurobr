@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ec0075">
+
+  <title>Alerta Financeiro | Demonstração Educativa</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #17233e;
+    }
+
+    /* CABEÇALHO */
+    .header {
+      height: 62px;
+      background: #ec0075;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu,
+    .login {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+
+    .brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      font-size: 26px;
+    }
+
+    /* ÁREA PRINCIPAL */
+    .hero {
+      height: 485px;
+      background: #ff5a98;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      background: #fff;
+      width: 115%;
+      height: 125px;
+      top: 125px;
+      left: -8%;
+      transform: rotate(18deg);
+      border-radius: 25px;
+    }
+
+    .shape-two {
+      position: absolute;
+      background: #ffa3c5;
+      width: 48%;
+      height: 260px;
+      right: -12%;
+      top: -50px;
+      transform: rotate(17deg);
+      border-radius: 30px;
+    }
+
+    .person {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .person img {
+      position: relative;
+      z-index: 1;
+      height: 92%;
+      max-width: 92%;
+      width: auto;
+      object-fit: contain;
+      object-position: center bottom;
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* CELULAR ILUSTRATIVO */
+    .phone {
+      z-index: 2;
+      position: absolute;
+      top: 145px;
+      right: 16%;
+      width: 65px;
+      height: 125px;
+      background: #ec0075;
+      border: 3px solid #8c164e;
+      border-radius: 10px;
+      transform: rotate(-8deg);
+      box-shadow: 0 4px 8px #0002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    /* CARTÃO DE TEXTO */
+    .content {
+      position: relative;
+      z-index: 3;
+      margin: -117px 13px 22px;
+      padding: 17px 16px 16px;
+      border-radius: 17px;
+      background: #f5f6f8;
+      box-shadow: 0 3px 12px #00000008;
+    }
+
+    .demo {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: bold;
+      color: #a30052;
+      background: #ffe0ef;
+      padding: 5px 8px;
+      border-radius: 5px;
+      margin-bottom: 9px;
+      letter-spacing: .4px;
+    }
+
+    h1 {
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      color: #14213d;
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 1.55;
+      color: #25334b;
+      margin-bottom: 10px;
+    }
+
+    .cta {
+      width: 100%;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ec0075;
+      color: white;
+      border: 0;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .cta:hover {
+      background: #c90063;
+    }
+
+    /* AVISO EDUCACIONAL */
+    .notice {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #5d6471;
+      text-align: center;
+    }
+
+    .educational {
+      padding: 25px 20px 35px;
+      text-align: center;
+      scroll-margin-top: 20px;
+    }
+
+    .educational h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .educational p {
+      max-width: 500px;
+      margin: 0 auto 12px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #4a5568;
+    }
+
+    .footer {
+      background: #f5f6f8;
+      color: #606979;
+      text-align: center;
+      padding: 18px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* AJUSTES PARA TELAS MAIORES */
+    @media (min-width: 600px) {
+      body {
+        background: #ececf0;
+      }
+
+      .header {
+        padding: 0 28px;
+      }
+
+      .hero {
+        height: 560px;
+      }
+
+      .person img {
+        height: 100%;
+      }
+
+      .phone {
+        right: calc(50% - 170px);
+        top: 160px;
+      }
+
+      .content {
+        max-width: 500px;
+        margin: -115px auto 25px;
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .educational {
+        max-width: 650px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="#inicio" class="menu" aria-label="Ir ao início">
+      <span aria-hidden="true">☰</span> Menu
+    </a>
+
+    <div class="brand" aria-label="Alerta">
+      <span>✣</span> alerta
+    </div>
+
+    <a href="#aviso" class="login">
+      <span aria-hidden="true">●</span> Sobre
+    </a>
+  </header>
+
+  <main id="inicio">
+
+    <section class="hero" aria-label="Ilustração educativa">
+      <div class="shape"></div>
+      <div class="shape-two"></div>
+
+      <div class="person">
+        <!-- Imagem ilustrativa pública.
+             Substitua o endereço pela sua imagem, se desejar. -->
+        <img
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=85"
+          alt="Retrato ilustrativo de uma pessoa"
+        >
+      </div>
+
+      <div class="phone" aria-hidden="true">✣</div>
+    </section>
+
+    <section class="content">
+      <span class="demo">DEMONSTRAÇÃO EDUCATIVA</span>
+
+      <h1>
+        Proteja seus dados e cuide das suas finanças
+      </h1>
+
+      <p class="description">
+        Aprenda a reconhecer golpes financeiros,
+        proteger suas informações e tomar decisões
+        mais seguras na internet.
+      </p>
+
+      <a class="cta" href="#aviso">
+        Ver alerta de segurança
+      </a>
+
+      <p class="notice">
+        Página fictícia criada exclusivamente para
+        fins educacionais e demonstração em vídeo.
+      </p>
+    </section>
+
+    <section class="educational" id="aviso">
+      <h2>Antes de compartilhar seus dados</h2>
+
+      <p>
+        Desconfie de páginas que prometem crédito fácil,
+        descontos garantidos ou consulta gratuita em troca
+        de informações pessoais.
+      </p>
+
+      <p>
+        Confira o endereço do site, procure os canais
+        oficiais da empresa e nunca informe senhas,
+        códigos de autenticação ou dados bancários
+        em páginas suspeitas.
+      </p>
+
+      <p>
+        <strong>Este site é uma simulação educativa.</strong>
+        Nenhum cadastro é realizado e nenhum dado pessoal
+        é solicitado ou armazenado.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Projeto demonstrativo para conscientização digital.<br>
+    Marca fictícia — sem vínculo com instituições financeiras.
+  </footer>
+
+</body>
+</html>
