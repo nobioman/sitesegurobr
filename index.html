@@ -6,9 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ec0075">
 
-  <title>Alerta Financeiro | Demonstração Educativa</title>
+  <title>Alerta Financeiro | Simulação Educativa</title>
 
   <style>
+    :root {
+      --rosa: #ec0075;
+      --rosa-claro: #ff5a98;
+      --texto: #14213d;
+      --cartao: #f5f6f8;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,31 +24,34 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #17233e;
+      background: #fff;
+      color: var(--texto);
     }
 
     /* CABEÇALHO */
     .header {
       height: 62px;
-      background: #ec0075;
-      color: #fff;
+      background: var(--rosa);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 14px;
       position: relative;
-      z-index: 2;
+      z-index: 5;
+    }
+
+    .header a {
+      text-decoration: none;
+      color: white;
     }
 
     .menu,
     .login {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
       display: flex;
       align-items: center;
       gap: 7px;
+      font-size: 14px;
       cursor: pointer;
     }
 
@@ -49,137 +59,117 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .brand span {
-      font-size: 26px;
+    .brand img {
+      display: block;
+      max-width: 112px;
+      max-height: 38px;
+      object-fit: contain;
     }
 
-    /* ÁREA PRINCIPAL */
+    /* BANNER PRINCIPAL */
     .hero {
       height: 485px;
-      background: #ff5a98;
       position: relative;
       overflow: hidden;
+      background: var(--rosa-claro);
     }
 
     .shape {
       position: absolute;
-      background: #fff;
-      width: 115%;
+      width: 120%;
       height: 125px;
       top: 125px;
       left: -8%;
-      transform: rotate(18deg);
+      background: white;
       border-radius: 25px;
+      transform: rotate(18deg);
     }
 
     .shape-two {
       position: absolute;
-      background: #ffa3c5;
       width: 48%;
       height: 260px;
-      right: -12%;
       top: -50px;
-      transform: rotate(17deg);
+      right: -12%;
       border-radius: 30px;
+      background: #ffa3c5;
+      transform: rotate(17deg);
     }
 
-    .person {
+    .banner-image {
       position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .banner-image img {
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      overflow: hidden;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
-    .person img {
-      position: relative;
-      z-index: 1;
-      height: 92%;
-      max-width: 92%;
-      width: auto;
-      object-fit: contain;
-      object-position: center bottom;
-      border-radius: 20px 20px 0 0;
-    }
-
-    /* CELULAR ILUSTRATIVO */
-    .phone {
-      z-index: 2;
-      position: absolute;
-      top: 145px;
-      right: 16%;
-      width: 65px;
-      height: 125px;
-      background: #ec0075;
-      border: 3px solid #8c164e;
-      border-radius: 10px;
-      transform: rotate(-8deg);
-      box-shadow: 0 4px 8px #0002;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 27px;
-      font-weight: bold;
-    }
-
-    /* CARTÃO DE TEXTO */
+    /* CARTÃO PRINCIPAL */
     .content {
       position: relative;
       z-index: 3;
       margin: -117px 13px 22px;
       padding: 17px 16px 16px;
+      background: var(--cartao);
       border-radius: 17px;
-      background: #f5f6f8;
       box-shadow: 0 3px 12px #00000008;
     }
 
     .demo {
       display: inline-block;
-      font-size: 10px;
-      font-weight: bold;
-      color: #a30052;
-      background: #ffe0ef;
+      margin-bottom: 9px;
       padding: 5px 8px;
       border-radius: 5px;
-      margin-bottom: 9px;
+      background: #ffe0ef;
+      color: #a30052;
+      font-size: 10px;
+      font-weight: bold;
       letter-spacing: .4px;
     }
 
     h1 {
+      margin-bottom: 14px;
+      color: var(--texto);
       font-size: 25px;
       line-height: 1.25;
-      letter-spacing: -0.6px;
-      margin-bottom: 14px;
-      color: #14213d;
+      letter-spacing: -.6px;
     }
 
     .description {
+      margin-bottom: 10px;
+      color: #25334b;
       font-size: 16px;
       line-height: 1.55;
-      color: #25334b;
-      margin-bottom: 10px;
     }
 
     .cta {
       width: 100%;
       min-height: 48px;
+      padding: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ec0075;
-      color: white;
       border: 0;
       border-radius: 9px;
+      background: var(--rosa);
+      color: white;
       font-size: 15px;
       font-weight: bold;
+      text-align: center;
       text-decoration: none;
       cursor: pointer;
       transition: background .2s;
@@ -189,15 +179,15 @@
       background: #c90063;
     }
 
-    /* AVISO EDUCACIONAL */
     .notice {
       margin-top: 14px;
+      color: #5d6471;
       font-size: 12px;
       line-height: 1.5;
-      color: #5d6471;
       text-align: center;
     }
 
+    /* SEÇÃO EDUCATIVA */
     .educational {
       padding: 25px 20px 35px;
       text-align: center;
@@ -205,28 +195,28 @@
     }
 
     .educational h2 {
-      font-size: 22px;
       margin-bottom: 12px;
+      font-size: 22px;
     }
 
     .educational p {
       max-width: 500px;
       margin: 0 auto 12px;
+      color: #4a5568;
       font-size: 15px;
       line-height: 1.65;
-      color: #4a5568;
     }
 
     .footer {
+      padding: 18px;
       background: #f5f6f8;
       color: #606979;
-      text-align: center;
-      padding: 18px;
       font-size: 12px;
       line-height: 1.6;
+      text-align: center;
     }
 
-    /* AJUSTES PARA TELAS MAIORES */
+    /* RESPONSIVIDADE */
     @media (min-width: 600px) {
       body {
         background: #ececf0;
@@ -240,15 +230,6 @@
         height: 560px;
       }
 
-      .person img {
-        height: 100%;
-      }
-
-      .phone {
-        right: calc(50% - 170px);
-        top: 160px;
-      }
-
       .content {
         max-width: 500px;
         margin: -115px auto 25px;
@@ -258,6 +239,7 @@
       h1 {
         font-size: 30px;
       }
+
 
       .educational {
         max-width: 650px;
@@ -270,48 +252,53 @@
 <body>
 
   <header class="header">
-    <a href="#inicio" class="menu" aria-label="Ir ao início">
-      <span aria-hidden="true">☰</span> Menu
+    <a href="#inicio" class="menu">
+      <span aria-hidden="true">☰</span>
+      Menu
     </a>
 
-    <div class="brand" aria-label="Alerta">
-      <span>✣</span> alerta
-    </div>
+    <a href="#inicio" class="brand" aria-label="Página inicial">
+      <img
+        src="img/logo.webp"
+        alt="Logo ilustrativa"
+        onerror="this.style.display='none';this.parentElement.textContent='✣ alerta';"
+      >
+    </a>
 
     <a href="#aviso" class="login">
-      <span aria-hidden="true">●</span> Sobre
+      <span aria-hidden="true">●</span>
+      Sobre
     </a>
   </header>
 
   <main id="inicio">
 
-    <section class="hero" aria-label="Ilustração educativa">
+    <section class="hero" aria-label="Banner ilustrativo">
+
       <div class="shape"></div>
       <div class="shape-two"></div>
 
-      <div class="person">
-        <!-- Imagem ilustrativa pública.
-             Substitua o endereço pela sua imagem, se desejar. -->
+      <div class="banner-image">
         <img
-          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=85"
-          alt="Retrato ilustrativo de uma pessoa"
+          src="img/banner01.webp"
+          alt="Banner ilustrativo da página"
         >
       </div>
 
-      <div class="phone" aria-hidden="true">✣</div>
     </section>
 
     <section class="content">
-      <span class="demo">DEMONSTRAÇÃO EDUCATIVA</span>
+
+      <span class="demo">
+        DEMONSTRAÇÃO EDUCATIVA
+      </span>
 
       <h1>
-        Proteja seus dados e cuide das suas finanças
+        Proteja seus dados e organize suas finanças
       </h1>
 
       <p class="description">
-        Aprenda a reconhecer golpes financeiros,
-        proteger suas informações e tomar decisões
-        mais seguras na internet.
+        Serasa Login
       </p>
 
       <a class="cta" href="#aviso">
@@ -322,36 +309,38 @@
         Página fictícia criada exclusivamente para
         fins educacionais e demonstração em vídeo.
       </p>
+
     </section>
 
     <section class="educational" id="aviso">
+
       <h2>Antes de compartilhar seus dados</h2>
 
       <p>
         Desconfie de páginas que prometem crédito fácil,
-        descontos garantidos ou consulta gratuita em troca
-        de informações pessoais.
+        descontos garantidos ou consultas gratuitas em
+        troca de informações pessoais.
       </p>
 
       <p>
-        Confira o endereço do site, procure os canais
-        oficiais da empresa e nunca informe senhas,
-        códigos de autenticação ou dados bancários
-        em páginas suspeitas.
+        Confira o endereço do site e procure os canais
+        oficiais da empresa. Nunca informe senhas ou
+        códigos de autenticação em páginas suspeitas.
       </p>
 
       <p>
-        <strong>Este site é uma simulação educativa.</strong>
-        Nenhum cadastro é realizado e nenhum dado pessoal
-        é solicitado ou armazenado.
+        <strong>Esta é uma simulação educativa.</strong>
+        Nenhum cadastro é realizado e nenhum dado
+        pessoal é solicitado ou armazenado.
       </p>
+
     </section>
 
   </main>
 
   <footer class="footer">
-    Projeto demonstrativo para conscientização digital.<br>
-    Marca fictícia — sem vínculo com instituições financeiras.
+    Projeto demonstrativo de conscientização digital.<br>
+    Marca fictícia, sem vínculo com instituições financeiras.
   </footer>
 
 </body>
