@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -145,61 +145,6 @@
       letter-spacing: -.6px;
     }
 
-    .description {
-      margin-bottom: 10px;
-      color: #25334b;
-      font-size: 16px;
-      line-height: 1.55;
-    }
-
-    /* CAMPO DE TEXTO */
-    .campo-cpf {
-      margin: 16px 0;
-      padding: 11px 13px;
-      background: #fff;
-      border: 1px solid #cfd3da;
-      border-radius: 9px;
-      text-align: left;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .campo-cpf:focus-within {
-      border-color: var(--rosa);
-      box-shadow: 0 0 0 2px #ec00751c;
-    }
-
-    .campo-cpf label {
-      display: block;
-      margin-bottom: 7px;
-      color: #343b49;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .campo-cpf input {
-      display: block;
-      width: 100%;
-      min-height: 28px;
-      border: 0;
-      outline: none;
-      background: transparent;
-      color: var(--texto);
-      font-family: inherit;
-      font-size: 17px;
-    }
-
-    .campo-cpf input::placeholder {
-      color: #969daa;
-    }
-
-    .campo-cpf small {
-      display: block;
-      margin-top: 7px;
-      color: #626b79;
-      font-size: 11px;
-      line-height: 1.4;
-    }
-
     .cta {
       width: 100%;
       min-height: 48px;
@@ -221,14 +166,6 @@
 
     .cta:hover {
       background: #c90063;
-    }
-
-    .notice {
-      margin-top: 14px;
-      color: #5d6471;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
     }
 
     .educational {
@@ -329,47 +266,20 @@
 
       <h1>Consulte Valores a Receber Agora Mesmo</h1>
 
-      <p class="description">
-        Número do CPF
-      </p>
-
-      <form id="form-cpf">
-        <div class="campo-cpf">
-          <label for="cpf">CPF</label>
-
-          <input
-            type="text"
-            id="cpf"
-            name="cpf"
-            placeholder="000.000.000-00"
-            inputmode="numeric"
-            maxlength="14"
-            autocomplete="off"
-            aria-describedby="aviso-cpf"
-          >
-
-          <small id="aviso-cpf">
-          </small>
-        </div>
-
-        <a class="cta" href="https://nobioman.github.io/etapaa02/">
-  Consultar
-</a>
-      </form>
-
-      <p class="notice" id="resultado-cpf" role="status">
-        Digite seu CPF para consultar saldo disponível para receber.
-      </p>
+      <a
+        class="cta"
+        href="https://nobioman.github.io/etapaa02/"
+      >
+        Consultar
+      </a>
     </section>
-
-
+  </main>
 
   <footer class="footer">
     Projeto demonstrativo de conscientização digital.<br>
     Página independente, sem vínculo com instituições financeiras.
   </footer>
-
   
-
 </body>
 </html>
+```
