@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ec0075">
-
   <title>Alerta Financeiro | Simulação Educativa</title>
 
   <style>
@@ -28,7 +27,6 @@
       color: var(--texto);
     }
 
-    /* CABEÇALHO */
     .header {
       height: 62px;
       background: var(--rosa);
@@ -46,13 +44,11 @@
       color: white;
     }
 
-    .menu,
-    .login {
+    .menu, .login {
       display: flex;
       align-items: center;
       gap: 7px;
       font-size: 14px;
-      cursor: pointer;
     }
 
     .brand {
@@ -156,6 +152,54 @@
       line-height: 1.55;
     }
 
+    /* CAMPO DE TEXTO */
+    .campo-cpf {
+      margin: 16px 0;
+      padding: 11px 13px;
+      background: #fff;
+      border: 1px solid #cfd3da;
+      border-radius: 9px;
+      text-align: left;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .campo-cpf:focus-within {
+      border-color: var(--rosa);
+      box-shadow: 0 0 0 2px #ec00751c;
+    }
+
+    .campo-cpf label {
+      display: block;
+      margin-bottom: 7px;
+      color: #343b49;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .campo-cpf input {
+      display: block;
+      width: 100%;
+      min-height: 28px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--texto);
+      font-family: inherit;
+      font-size: 17px;
+    }
+
+    .campo-cpf input::placeholder {
+      color: #969daa;
+    }
+
+    .campo-cpf small {
+      display: block;
+      margin-top: 7px;
+      color: #626b79;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
     .cta {
       width: 100%;
       min-height: 48px;
@@ -187,7 +231,6 @@
       text-align: center;
     }
 
-    /* SEÇÃO EDUCATIVA */
     .educational {
       padding: 25px 20px 35px;
       text-align: center;
@@ -216,7 +259,6 @@
       text-align: center;
     }
 
-    /* RESPONSIVIDADE */
     @media (min-width: 600px) {
       body {
         background: #ececf0;
@@ -240,7 +282,6 @@
         font-size: 30px;
       }
 
-
       .educational {
         max-width: 650px;
         margin: auto;
@@ -250,7 +291,6 @@
 </head>
 
 <body>
-
   <header class="header">
     <a href="#inicio" class="menu">
       <span aria-hidden="true">☰</span>
@@ -261,7 +301,7 @@
       <img
         src="img/logosr.png"
         alt="Logo ilustrativa"
-        onerror="this.style.display='none';this.parentElement.textContent='✣ alerta';"
+        onerror="this.style.display='none';"
       >
     </a>
 
@@ -272,9 +312,7 @@
   </header>
 
   <main id="inicio">
-
     <section class="hero" aria-label="Banner ilustrativo">
-
       <div class="shape"></div>
       <div class="shape-two"></div>
 
@@ -284,39 +322,97 @@
           alt="Banner ilustrativo da página"
         >
       </div>
-
     </section>
 
     <section class="content">
+      <span class="demo">SIMULAÇÃO EDUCATIVA</span>
 
-      <span class="demo">
-        Serasa Experian
-      </span>
-
-      <h1>
-        Cosulte Valores A Receber Agora Mesmo!
-      </h1>
+      <h1>Consulte informações de demonstração</h1>
 
       <p class="description">
-        Informe Número de CPF
+        Experimente o formulário abaixo com dados fictícios.
       </p>
 
-      <a class="cta" href="#aviso">
-        Ver alerta de segurança
-      </a>
+      <form id="form-cpf">
+        <div class="campo-cpf">
+          <label for="cpf">CPF (campo demonstrativo)</label>
 
-      <p class="notice">
-        Digite seu CPF para consultar saldo disponível para receber.
+          <input
+            type="text"
+            id="cpf"
+            name="cpf"
+            placeholder="000.000.000-00"
+            inputmode="numeric"
+            maxlength="14"
+            autocomplete="off"
+            aria-describedby="aviso-cpf"
+          >
+
+          <small id="aviso-cpf">
+            Não informe seu CPF real. Esta página não consulta dados pessoais.
+          </small>
+        </div>
+
+        <button class="cta" type="submit">
+          Ver demonstração
+        </button>
+      </form>
+
+      <p class="notice" id="resultado-cpf" role="status">
+        Demonstração local: nenhum dado será enviado.
       </p>
-
     </section>
 
-
+    <section class="educational" id="aviso">
+      <h2>Proteja seus dados pessoais</h2>
+      <p>
+        Confira sempre o endereço dos sites antes de fornecer
+        informações pessoais e utilize os canais oficiais das instituições.
+      </p>
+    </section>
+  </main>
 
   <footer class="footer">
     Projeto demonstrativo de conscientização digital.<br>
-    Marca fictícia, sem vínculo com instituições financeiras.
+    Página independente, sem vínculo com instituições financeiras.
   </footer>
 
+  <script>
+    const campoCpf = document.getElementById("cpf");
+    const formCpf = document.getElementById("form-cpf");
+    const resultadoCpf = document.getElementById("resultado-cpf");
+
+    campoCpf.addEventListener("input", () => {
+      let numeros = campoCpf.value
+        .replace(/\D/g, "")
+        .slice(0, 11);
+
+      if (numeros.length > 9) {
+        numeros = numeros.replace(
+          /^(\d{3})(\d{3})(\d{3})(\d{0,2})$/,
+          "$1.$2.$3-$4"
+        );
+      } else if (numeros.length > 6) {
+        numeros = numeros.replace(
+          /^(\d{3})(\d{3})(\d{0,3})$/,
+          "$1.$2.$3"
+        );
+      } else if (numeros.length > 3) {
+        numeros = numeros.replace(
+          /^(\d{3})(\d{0,3})$/,
+          "$1.$2"
+        );
+      }
+
+      campoCpf.value = numeros;
+    });
+
+    formCpf.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      resultadoCpf.textContent =
+        "Demonstração concluída. Nenhum dado foi enviado ou consultado.";
+    });
+  </script>
 </body>
 </html>
